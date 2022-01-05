@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://api-ssps.cajthaml.eu/file/global/css/reset_ld9mrCCm.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="isekaiWoldsStyle.css">
+</head>
+<body>
+    <!--provizorní logo-->
+    <h1>異世界 worlds</h1>
+    <img src="./assets/Nature-Floating-Island-Floating-Island-Waterfalls-5910291.png" alt="" class="logo">
+    <main>
+        <div class="head">
+            <div class="xp"><p>Level: <span id="level">0</span></p></div>
+            <div class="money"><img src="./assets/coin_05d.png" alt=""><p id="money">100</p></div>
+            <button onclick="mainMenu()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="midle">
+            <img src="./assets/ezgif-3-fb495ef1d1.gif" alt="" class="character">
+        </div>
+        <div class="bottom">
+            <button class="bottomNav" onclick="shop()">shop</button>
+            <button class="bottomNav" onclick="quests()">quests</button>
+            <button class="bottomNav" onclick="actions()">actions</button>
+        </div>
+        <div class="menu" id="mainMenu">
+            <button class="menuButton">Save</button>
+            <button class="menuButton">Credits</button>
+            <button class="menuButton">About</button>
+        </div>
+        <div class="shop" id="shop">
+            <div class="shopItem">
+                <img src="./assets/sword_02b.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">Sword</p>
+                    <p class="shopItemDesc">2x click</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/armor_01d.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">Armor</p>
+                    <p class="shopItemDesc">2x resistance</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/shield_02d.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">shield</p>
+                    <p class="shopItemDesc">2x xp</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/necklace_02d.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">necklace</p>
+                    <p class="shopItemDesc">2x AutoClick</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/ring_03d.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">ring</p>
+                    <p class="shopItemDesc">2x afk click</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/potion_01f.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">potion of fast clicking</p>
+                    <p class="shopItemDesc">10x click for 60s</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/potion_02a.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">potion of ultimate clicking</p>
+                    <p class="shopItemDesc">30x click for 60s</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/potion_03a.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">potion of god clicking</p>
+                    <p class="shopItemDesc">69x click for 60s</p>
+                </div>
+            </div>
+        </div>
+        <div class="quests" id="quests">
+            <div class="questItem">
+                <p>Click 300 times</p>
+                <div class="progressBar">
+                    <div class="progressBarFiller"></div>
+                </div>
+            </div>
+            <div class="questItem">
+                <p>Click 300 times</p>
+                <div class="progressBar">
+                    <div class="progressBarFiller"></div>
+                </div>
+            </div>
+            <div class="questItem">
+                <p>Click 300 times</p>
+                <div class="progressBar">
+                    <div class="progressBarFiller"></div>
+                </div>
+            </div>
+        </div>
+        <div class="actions" id="actions">
+            <div class="actionItem">
+                <img src="./assets/helmet_02b.png" alt="">
+                <div class="actionItemTex">
+                    <p class="actionItemName">Fight with goblin</p>
+                    <p class="actionItemDesc">500 HP 3CPS</p>
+                </div>
+            </div>
+            <div class="actionItem">
+                <img src="./assets/hat_01f.png" alt="">
+                <div class="actionItemTex">
+                    <p class="actionItemName">Fight with dark lord</p>
+                    <p class="actionItemDesc">5000 HP 6CPS</p>
+                </div>
+            </div>
+            <div class="actionItem">
+                <img src="./assets/skull_01a.png" alt="">
+                <div class="actionItemTex">
+                    <p class="actionItemName">Jump off the cliff</p>
+                    <p class="actionItemDesc">2x bonus for your next life</p>
+                </div>
+            </div> 
+        </div>
+    </main>
+    <script src="menu.js"></script>
+</body>
+</html>
