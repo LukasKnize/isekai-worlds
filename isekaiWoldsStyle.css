@@ -338,7 +338,7 @@ main .credits h2 {
   font-size: 1.4em;
 }
 
-main .about {
+main .about, main .lore {
   width: 100%;
   height: 540px;
   position: absolute;
@@ -357,7 +357,7 @@ main .about {
   text-align: center;
 }
 
-main .about h2 {
+main .about h2, main .lore h2 {
   margin-top: 20px;
   font-size: 1.4em;
 }
@@ -436,6 +436,67 @@ main .bossFight .character .characterStats .HPBar {
 }
 
 main .bossFight .character .characterStats .HPBar .HPBarFiller {
+  width: 30%;
+  height: 100%;
+  background-color: #146356;
+}
+
+main .stats {
+  width: 100%;
+  height: 540px;
+  position: absolute;
+  left: 0;
+  top: 50px;
+  background-color: #a3da8d;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  row-gap: 20px;
+  display: none;
+  overflow-y: scroll;
+}
+
+main .stats .statItem {
+  width: 90%;
+  height: 60px;
+  background-color: #f3c892;
+  color: #146356;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 3px #146356 solid;
+}
+
+main .stats .statItem:first-child {
+  margin-top: 20px;
+}
+
+main .stats .statItem p {
+  color: #146356;
+}
+
+main .stats .statItem .progressBar {
+  width: 90%;
+  height: 10px;
+  border: 2px solid #146356;
+  border-radius: 5px;
+}
+
+main .stats .statItem .progressBar .progressBarFiller {
   width: 30%;
   height: 100%;
   background-color: #146356;

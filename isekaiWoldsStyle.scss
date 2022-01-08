@@ -233,7 +233,7 @@ main {
             font-size: 1.4em;
         }
     }
-    .about {
+    .about, .lore {
         width: 100%;
         height: 540px;
         position: absolute;
@@ -300,6 +300,47 @@ main {
                         height: 100%;
                         background-color: $darkGreen;
                     }
+                }
+            }
+        }
+    }
+    .stats {
+        width: 100%;
+        height: 540px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        background-color: $lightGreen;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+        display: none;
+        overflow-y: scroll;
+        .statItem {
+            width: 90%;
+            height: 60px;
+            background-color: $lightBrown;
+            color: $darkGreen;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 3px $darkGreen solid;
+            &:first-child {
+                margin-top: 20px;
+            }
+            p {
+                color: $darkGreen;
+            }
+            .progressBar {
+                width: 90%;
+                height: 10px;
+                border: 2px solid $darkGreen;
+                border-radius: 5px;
+                .progressBarFiller {
+                    width: 30%;
+                    height: 100%;
+                    background-color: $darkGreen;
                 }
             }
         }
