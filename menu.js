@@ -29,3 +29,18 @@ function about() {
     document.getElementById("about").classList.toggle("show");
 }
 
+window.addEventListener("load", () =>{
+    console.log("%cWhat are you doing there? and be honest!", "color:blue");
+    console.log("\n");
+});
+
+let money = 0;
+
+function clicked() {
+    money++;
+    document.getElementById("money").textContent = money;
+}
+
+function bossFight(){
+    document.getElementById("bossFight").classList.toggle("show");
+}

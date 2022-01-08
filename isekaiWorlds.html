@@ -25,8 +25,8 @@
             <div class="money"><img src="./assets/coin_05d.png" alt=""><p id="money">100</p></div>
             <button onclick="mainMenu()"><i class="fas fa-bars"></i></button>
         </div>
-        <div class="midle">
-            <img src="./assets/ezgif-3-fb495ef1d1.gif" alt="" class="character">
+        <div class="midle" onclick="clicked()">
+            <img src="./assets/idleGif.gif" alt="" class="character">
         </div>
         <div class="bottom">
             <button class="bottomNav" onclick="shop()">shop</button>
@@ -117,14 +117,14 @@
             </div>
         </div>
         <div class="actions" id="actions">
-            <div class="actionItem">
+            <div class="actionItem" onclick="bossFight()">
                 <img src="./assets/helmet_02b.png" alt="">
                 <div class="actionItemTex">
                     <p class="actionItemName">Fight with goblin</p>
                     <p class="actionItemDesc">500 HP 3CPS</p>
                 </div>
             </div>
-            <div class="actionItem">
+            <div class="actionItem" onclick="bossFight()">
                 <img src="./assets/hat_01f.png" alt="">
                 <div class="actionItemTex">
                     <p class="actionItemName">Fight with dark lord</p>
@@ -150,6 +150,28 @@
             <h2>cool game I gues UwU
             </h2>
             <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">for more</a>
+        </div>
+        <div class="bossFight" id="bossFight">
+            <h2>Click as fast as you can</h2>
+            <div class="character">
+                <img src="assets/attackGif.gif" alt="">
+                <div class="characterStats">
+                    <p>You</p>
+                    <div class="HPBar">
+                        <div class="HPBarFiller"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="character">
+                <img src="assets/helmet_02b.png" alt="">
+                <div class="characterStats">
+                    <p>goblin</p>
+                    <div class="HPBar">
+                        <div class="HPBarFiller"></div>
+                    </div>
+                </div>
+            </div>
+            <h3>CLICK!!!</h3>
         </div>
     </main>
     <script src="menu.js"></script>

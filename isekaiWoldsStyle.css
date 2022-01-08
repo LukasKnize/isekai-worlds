@@ -12,7 +12,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
   background-image: url("./assets/Background.png");
-  background-size: contain;
+  background-size: cover;
+  background-position: bottom;
 }
 
 body h1 {
@@ -93,7 +94,7 @@ main .midle {
 }
 
 main .midle img {
-  width: 100px;
+  max-height: 250px;
 }
 
 main .bottom {
@@ -361,6 +362,85 @@ main .about h2 {
   font-size: 1.4em;
 }
 
+main .bossFight {
+  width: 100%;
+  height: 540px;
+  position: absolute;
+  left: 0;
+  top: 50px;
+  background-color: #a3da8d;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  row-gap: 20px;
+  display: none;
+  text-align: center;
+}
+
+main .bossFight h2 {
+  font-size: 1.5em;
+}
+
+main .bossFight .character {
+  width: 90%;
+  height: 70px;
+  background-color: #f3c892;
+  color: #146356;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 3px #146356 solid;
+}
+
+main .bossFight .character:first-child {
+  margin-top: 20px;
+}
+
+main .bossFight .character img {
+  width: 64px;
+  border: 3px #146356 solid;
+}
+
+main .bossFight .character h3 {
+  font-size: 3em;
+  color: #146356;
+  margin-top: 60px;
+}
+
+main .bossFight .character .characterStats {
+  width: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .bossFight .character .characterStats .HPBar {
+  width: 200px;
+  height: 10px;
+  border: 2px solid #146356;
+  border-radius: 5px;
+}
+
+main .bossFight .character .characterStats .HPBar .HPBarFiller {
+  width: 30%;
+  height: 100%;
+  background-color: #146356;
+}
+
 main .show {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -383,5 +463,13 @@ main .show {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #146356;
+}
+
+::-moz-selection {
+  background-color: transparent;
+}
+
+::selection {
+  background-color: transparent;
 }
 /*# sourceMappingURL=isekaiWoldsStyle.css.map */

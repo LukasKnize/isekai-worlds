@@ -11,7 +11,8 @@ body {
     justify-content: center;
     align-items: center;
     background-image: url("./assets/Background.png");
-    background-size: contain;
+    background-size: cover;
+    background-position: bottom;
     h1 {
         font-family: "DotGothic16", sans-serif;
         position: absolute;
@@ -67,7 +68,7 @@ main {
         justify-content: center;
         align-items: center;
         img {
-            width: 100px;
+            max-height: 250px;
         }
     }
     .bottom {
@@ -166,15 +167,15 @@ main {
             &:first-child {
                 margin-top: 20px;
             }
-            p{
+            p {
                 color: $darkGreen;
             }
-            .progressBar{
+            .progressBar {
                 width: 90%;
                 height: 10px;
                 border: 2px solid $darkGreen;
                 border-radius: 5px;
-                .progressBarFiller{
+                .progressBarFiller {
                     width: 30%;
                     height: 100%;
                     background-color: $darkGreen;
@@ -215,7 +216,7 @@ main {
             }
         }
     }
-    .credits{
+    .credits {
         width: 100%;
         height: 540px;
         position: absolute;
@@ -227,12 +228,12 @@ main {
         row-gap: 20px;
         display: none;
         text-align: center;
-        h2{
+        h2 {
             margin-top: 20px;
             font-size: 1.4em;
         }
     }
-    .about{
+    .about {
         width: 100%;
         height: 540px;
         position: absolute;
@@ -244,9 +245,63 @@ main {
         row-gap: 20px;
         display: none;
         text-align: center;
-        h2{
+        h2 {
             margin-top: 20px;
             font-size: 1.4em;
+        }
+    }
+    .bossFight {
+        width: 100%;
+        height: 540px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        background-color: $lightGreen;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+        display: none;
+        text-align: center;
+        h2 {
+            font-size: 1.5em;
+        }
+        .character {
+            width: 90%;
+            height: 70px;
+            background-color: $lightBrown;
+            color: $darkGreen;
+            display: flex;
+            border: 3px $darkGreen solid;
+            &:first-child {
+                margin-top: 20px;
+            }
+            img {
+                width: 64px;
+                border: 3px $darkGreen solid;
+            }
+            h3{
+                font-size: 3em;
+                color: $darkGreen;
+                margin-top: 60px;
+            }
+            .characterStats {
+                width: inherit;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .HPBar {
+                    width: 200px;
+                    height: 10px;
+                    border: 2px solid $darkGreen;
+                    border-radius: 5px;
+                    .HPBarFiller {
+                        width: 30%;
+                        height: 100%;
+                        background-color: $darkGreen;
+                    }
+                }
+            }
         }
     }
     .show {
@@ -270,4 +325,8 @@ main {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: $darkGreen;
+}
+
+::selection {
+    background-color: transparent;
 }
