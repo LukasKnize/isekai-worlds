@@ -18,7 +18,7 @@
 <body>
     <!--provizorní logo-->
     <h1>異世界 worlds</h1>
-    <img src="./assets/Nature-Floating-Island-Floating-Island-Waterfalls-5910291.png" alt="" class="logo">
+    
     <main>
         <div class="head">
             <div class="xp"><p>Level: <span id="level">0</span></p></div>
@@ -97,6 +97,35 @@
                     <p class="shopItemDesc">69x click for 60s</p>
                 </div>
             </div>
+
+            <div class="shopItem">
+                <img src="./assets/Abandoned Hardware.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">Abandoned Hardware</p>
+                    <p class="shopItemDesc">cool background</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/Beauty Potion V2.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">Beauty Potion</p>
+                    <p class="shopItemDesc">maybe even cooler background</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/Coop Intruder.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">Coop Intruder</p>
+                    <p class="shopItemDesc">super cool background</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/New Letter.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">New Letter</p>
+                    <p class="shopItemDesc">OK, this is just flex</p>
+                </div>
+            </div>
         </div>
         <div class="quests" id="quests">
             <div class="questItem">
@@ -147,6 +176,8 @@
             <a href="https://edermunizz.itch.io/free-pixel-art-forest" target="_blank">background image: by Eder Muniz</a>
             <a href="https://kyrise.itch.io/kyrises-free-16x16-rpg-icon-pack" target="_blank">pixel art icons: by Kyrise</a>
             <a href="https://clembod.itch.io/warrior-free-animation-set" target="_blank">character: by Clembod</a>
+            <a href="https://royal-naym.itch.io/dark-nights-wallpaper-pack" target="_blank">other background images: by Royal Naym</a>
+            <p>Code, design and rest is by Lukáš Kníže</p>
         </div>
         <div class="about" id="about">
             <h2>cool game I gues UwU
@@ -203,6 +234,14 @@
             <p>lore, more like Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nulla totam doloremque, excepturi delectus magni reiciendis qui ab, quam, consequuntur harum architecto ipsum recusandae aspernatur voluptatum atque iure provident pariatur.</p>
         </div>
     </main>
+    <div id="textBox" class="textBox">
+        <img src="./assets/waterIsekai.png" alt="">
+        <div class="textBoxContainer">
+            <p id="textBoxOutput"></p>
+            <i class="fas fa-caret-right" onclick="nextText()"></i>
+        </div>
+    </div>
     <script src="menu.js"></script>
+    <script src="textScript.js"></script>
 </body>
 </html>
