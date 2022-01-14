@@ -533,4 +533,29 @@ main .show {
 ::selection {
   background-color: transparent;
 }
+
+@media (max-width: 400px) {
+  main {
+    font-family: "VT323", monospace;
+    font-size: 1.4em;
+    width: 320px;
+    height: 100%;
+    max-height: 100vh;
+    background-color: #fff1bd;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  main .midle {
+    height: inherit;
+  }
+  main .midle img {
+    max-width: 100%;
+  }
+}
 /*# sourceMappingURL=isekaiWoldsStyle.css.map */

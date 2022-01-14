@@ -371,3 +371,24 @@ main {
 ::selection {
     background-color: transparent;
 }
+
+@media (max-width: 400px){
+    main {
+        font-family: "VT323", monospace;
+        font-size: 1.4em;
+        width: 320px;
+        height: 100%;
+        max-height: 100vh;
+        background-color: #fff1bd;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        .midle{
+            height: inherit;
+            img{
+                max-width: 100%;
+            }
+        }
+    }
+}
+
