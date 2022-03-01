@@ -3,7 +3,7 @@
     <h1>異世界 worlds</h1>
     <main>
       <Head @openMainMenu="openMainMenu" />
-      <Middle/>
+      <Middle @middleclicked="middleClick()" />
       <Bottom />
       <component :is="menu"> </component>
     </main>
@@ -42,8 +42,18 @@ export default {
         this.menu = ''
       }
       
+    },
+
+    middleClick(){
+      console.log("click1")
+      this.moneyChange(1)
+    },
+
+    moneyChange(data){
+      this.$store.dispatch("updateCoins", data);
     }
   }
+  
 };
 </script>
 
