@@ -7,7 +7,6 @@
       <Bottom @openMenu="openMenu" />
       <component :is="menu" @moneyChange="moneyChange" @openMenu="openMenu"> </component>
     </main>
-    <button @click="xd()">fhtres</button>
   </div>
 </template>
 
@@ -18,6 +17,12 @@ import Bottom from "./components/bottom.vue";
 import MainMenu from "./components/mainmenu.vue";
 import Shop from "./components/shop.vue";
 import Stats from "./components/stats.vue";
+import Quests from "./components/quests.vue";
+import Actions from "./components/actions.vue";
+import Lore from "./components/lore.vue";
+import About from "./components/about.vue";
+import Credits from "./components/credits.vue";
+import BossFight from "./components/bossfight.vue";
 
 export default {
   name: "App",
@@ -28,12 +33,19 @@ export default {
     'Shop': Shop,
     'MainMenu': MainMenu,
     'Stats': Stats,
+    'Quests': Quests,
+    'Actions': Actions,
+    'Lore': Lore,
+    'Credits': Credits,
+    'About': About,
+    'BossFight': BossFight
     
   },
   data(){
     return{
       menu: "",
-      autoInterval: ""
+      autoInterval: "",
+      autoRunning: false,
     }
   },
   methods:{
@@ -55,15 +67,15 @@ export default {
     },
 
     autoClick(){
+      this.autoRunning = true;
       this.autoInterval = setInterval(
-        function(){
-          console.log(1 * this.$store.state.shopitems[0].level)
+        () => {
           this.moneyChange(1 * this.$store.state.shopitems[3].level)
     }, 1000);
     }
   },
   mounted(){
-    if (this.$store.state.shopitems[3].level >= 1) {
+    if (this.$store.state.shopitems[3].level >= 1 && !this.autoRunning) {
       this.autoClick();
     }
   }
@@ -72,6 +84,12 @@ export default {
 </script>
 
 <style>
+#app{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
     background-color: gray;
     width: 100%;
@@ -100,13 +118,22 @@ body {
     color: #fff1bd;
     font-size: 2em;
   }
-  
-  body .logo {
-    position: absolute;
-    left: 0;
-    top: 0;
-    margin-left: 100px;
-    margin-top: 50px;
-    width: 100px;
+
+  @media(max-width: 950px){
+    body h1 {
+      display: none;
+    }
+  }
+
+  @media(max-width: 1500px){
+    #app{
+      width: 100%;
+    }
+  }
+
+  @media(max-height: 1500px){
+    #app{
+      height: 100%;
+    }
   }
 </style>

@@ -1,9 +1,9 @@
 <template>
      <div class="menu show" id="mainMenu">
             <button class="menuButton" @click="openMenu('Stats')">Stats</button>
-            <button class="menuButton" onclick="lore()">Lore</button>
-            <button class="menuButton" onclick="credits()">Credits</button>
-            <button class="menuButton" onclick="about()">About</button>
+            <button class="menuButton" @click="openMenu('Lore')">Lore</button>
+            <button class="menuButton" @click="openMenu('Credits')">Credits</button>
+            <button class="menuButton" @click="openMenu('About')">About</button>
         </div>
 </template>
 

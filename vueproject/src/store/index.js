@@ -103,6 +103,9 @@ export default new Vuex.Store({
   },
   mutations: {
     updateCoins(state, data){
+
+      //👀 geniální anticheat, asi ho budu ještě zdokonalovat, protože zde k překonání stačí základní znalost js 👀
+
       let oldCheck = [...state.rgroianaoror];
       oldCheck.pop();
       state.money[state.position] += data;

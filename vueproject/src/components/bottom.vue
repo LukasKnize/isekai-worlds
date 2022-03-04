@@ -1,8 +1,8 @@
 <template>
   <div class="bottom">
-    <button class="bottomNav"  @click="openMenu('Shop')" >shop</button>
-    <button class="bottomNav" onclick="quests()">quests</button>
-    <button class="bottomNav" onclick="actions()">actions</button>
+    <button class="bottomNav" @click="openMenu('Shop')">shop</button>
+    <button class="bottomNav" @click="openMenu('Quests')">quests</button>
+    <button class="bottomNav" @click="openMenu('Actions')">actions</button>
   </div>
 </template>
 
