@@ -11,35 +11,35 @@ export default new Vuex.Store({
       name: 'Sword',
       desc: '2x click',
       price: 10,
-      owned: false
+      level: 1
     },
     {
       image: 'armor_01d.png',
       name: 'Armor',
       desc: '2x resistance',
       price: 15,
-      owned: false
+      level: 0
     },
     {
       image: 'shield_02d.png',
       name: 'shield',
       desc: '2x xp',
       price: 40,
-      owned: false
+      level: 0
     },
     {
       image: 'necklace_02d.png',
       name: 'necklace',
       desc: '2x AutoClick',
       price: 500,
-      owned: false
+      level: 0
     },
     {
       image: 'ring_03d.png',
       name: 'ring',
       desc: '2x afk click',
       price: 2000,
-      owned: false
+      level: 0
     },
     {
       image: 'potion_01f.png',
@@ -94,21 +94,19 @@ export default new Vuex.Store({
   money: ["x", 0, "x", "x"],
   rgroianaoror: ["x", "x", 0, "x"],
   position: 1,
-  shiftedpos: 2
+  shiftedpos: 2,
+  xp: 0,
+  nextXp: 10,
+  level: 1
   },
   getters: {
   },
   mutations: {
     updateCoins(state, data){
-      //console.log(state.money);
       let oldCheck = [...state.rgroianaoror];
-      console.log("ok1")
       oldCheck.pop();
-      console.log("ok2")
       state.money[state.position] += data;
       state.rgroianaoror[state.shiftedpos] += data;
-      console.log(state.money);
-      console.log(state.rgroianaoror);
       if (state.money[state.position] == state.rgroianaoror[state.shiftedpos]) {
         if (state.position == state.money.length - 1) {
           let value = state.money[state.position]
@@ -135,20 +133,22 @@ export default new Vuex.Store({
         }
         //console.log(state.money);
       }else{
-        console.log("fff");
-        state.money = oldCheck;
+        state.money[state.position] = oldCheck[state.shiftedpos];
         state.rgroianaoror = oldCheck;
-        //state.rgroianaoror[state.rgroianaoror.length] = "x"
-        state.rgroianaoror;
-        console.log(state.money);
-        console.log(state.rgroianaoror);
       }
+    },
+    buyUpgrade(state, data){
+      state.shopitems[data].level += 1;
+      state.shopitems[data].price *= 2;
     }
   },
   actions: {
     updateCoins ({ state, commit }, data) {
       commit('updateCoins', data)
-    }
+    },
+    buyUpgrade({ state, commit }, data) {
+      commit('buyUpgrade', data)
+    },
   },
   modules: {
   },

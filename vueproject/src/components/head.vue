@@ -11,7 +11,6 @@ export default {
     name: "heading",
     methods:{
         openMainMenu(data){
-            console.log(data)
             this.$emit("openMainMenu", data)
         }
     },

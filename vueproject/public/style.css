@@ -142,6 +142,7 @@
     display: -ms-flexbox;
     display: flex;
     border: 3px #146356 solid;
+    position: relative;
   }
   
   main .shop .shopItem:first-child {
@@ -165,6 +166,17 @@
         -ms-flex-pack: center;
             justify-content: center;
     margin-bottom: 10px;
+    max-width: 60%;
+  }
+
+  main .shop .shopItem .shopItemTex p:nth-child(2){
+    color: #000000;
+  }
+
+  main .shop .shopItem .price{
+    position: absolute;
+    right: 5%;
+    top: 5%;
   }
   
   main .quests {

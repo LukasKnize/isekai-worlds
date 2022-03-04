@@ -1,6 +1,6 @@
 <template>
     <div class="shop show" id="shop">
-        <Shopitem v-for="(item, index) in products" :key="index" :image="item.image" :name="item.name" :desc="item.desc" />
+        <Shopitem v-for="(item, index) in products" :key="index" :image="item.image" :name="item.name" :desc="item.desc" :index="index" @moneyChange="moneyChange" />
         </div>
 </template>
 
@@ -19,6 +19,11 @@ export default {
    },
    mounted(){
        this.products = this.$store.state.shopitems;
+   },
+   methods: {
+       moneyChange(data){
+           this.$emit("moneyChange", data)
+       }
    }
 }
 </script>

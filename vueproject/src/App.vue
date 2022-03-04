@@ -2,10 +2,10 @@
   <div id="app">
     <h1>異世界 worlds</h1>
     <main>
-      <Head @openMainMenu="openMainMenu" />
+      <Head @openMainMenu="openMenu" />
       <Middle @middleclicked="middleClick()" />
-      <Bottom />
-      <component :is="menu"> </component>
+      <Bottom @openMenu="openMenu" />
+      <component :is="menu" @moneyChange="moneyChange" @openMenu="openMenu"> </component>
     </main>
     <button @click="xd()">fhtres</button>
   </div>
@@ -17,6 +17,7 @@ import Middle from "./components/middle.vue";
 import Bottom from "./components/bottom.vue";
 import MainMenu from "./components/mainmenu.vue";
 import Shop from "./components/shop.vue";
+import Stats from "./components/stats.vue";
 
 export default {
   name: "App",
@@ -26,16 +27,17 @@ export default {
     Bottom,
     'Shop': Shop,
     'MainMenu': MainMenu,
+    'Stats': Stats,
     
   },
   data(){
     return{
-      menu: ""
+      menu: "",
+      autoInterval: ""
     }
   },
   methods:{
-    openMainMenu(typeOfMenu){
-      console.log(typeOfMenu)
+    openMenu(typeOfMenu){
       if (this.menu != typeOfMenu) {
         this.menu = typeOfMenu
       }else{
@@ -45,12 +47,24 @@ export default {
     },
 
     middleClick(){
-      console.log("click1")
-      this.moneyChange(1)
+      this.moneyChange(1 * this.$store.state.shopitems[0].level)
     },
 
     moneyChange(data){
       this.$store.dispatch("updateCoins", data);
+    },
+
+    autoClick(){
+      this.autoInterval = setInterval(
+        function(){
+          console.log(1 * this.$store.state.shopitems[0].level)
+          this.moneyChange(1 * this.$store.state.shopitems[3].level)
+    }, 1000);
+    }
+  },
+  mounted(){
+    if (this.$store.state.shopitems[3].level >= 1) {
+      this.autoClick();
     }
   }
   

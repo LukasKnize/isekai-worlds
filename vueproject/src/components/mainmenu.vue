@@ -1,7 +1,6 @@
 <template>
      <div class="menu show" id="mainMenu">
-            <button class="menuButton">Save</button>
-            <button class="menuButton" onclick="stats()">Stats</button>
+            <button class="menuButton" @click="openMenu('Stats')">Stats</button>
             <button class="menuButton" onclick="lore()">Lore</button>
             <button class="menuButton" onclick="credits()">Credits</button>
             <button class="menuButton" onclick="about()">About</button>
@@ -11,5 +10,11 @@
 <script>
 export default {
     name: "mainMenu",
+
+    methods:{
+        openMenu(data){
+            this.$emit("openMenu", data)
+        }
+    }
 }
 </script>

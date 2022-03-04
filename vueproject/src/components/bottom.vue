@@ -1,6 +1,6 @@
 <template>
   <div class="bottom">
-    <button class="bottomNav" onclick="shop()">shop</button>
+    <button class="bottomNav"  @click="openMenu('Shop')" >shop</button>
     <button class="bottomNav" onclick="quests()">quests</button>
     <button class="bottomNav" onclick="actions()">actions</button>
   </div>
@@ -9,5 +9,10 @@
 <script>
 export default {
   name: "bottom",
+    methods:{
+        openMenu(data){
+            this.$emit("openMenu", data)
+        }
+    }
 };
 </script>
