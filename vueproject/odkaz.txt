@@ -1,0 +1,3 @@
+Projekt má stále pár technických nedostatků a samozřejmě nemá ještě implementovány všechny funkce, ale to pokud jsem správně pochopil, ještě v tomto odevzdání nemusí být hotové
+
+odkaz: https://lukasknize.github.io/isekaiWorlds/

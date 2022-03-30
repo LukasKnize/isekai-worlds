@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://api-ssps.cajthaml.eu/file/global/css/reset_ld9mrCCm.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="isekaiWoldsStyle.css">
+</head>
+<body>
+    <!--provizorní logo-->
+    <h1>異世界 worlds</h1>
+    
+    <main>
+        <div class="head">
+            <div class="xp"><p>Level: <span id="level">0</span></p></div>
+            <div class="money"><img src="./assets/coin_05d.png" alt=""><p id="money">100</p></div>
+            <button onclick="mainMenu()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="midle" onclick="clicked()">
+            <img src="./assets/idleGif.gif" alt="" class="character" id="character">
+        </div>
+        <div class="bottom">
+            <button class="bottomNav" onclick="shop()">shop</button>
+            <button class="bottomNav" onclick="quests()">quests</button>
+            <button class="bottomNav" onclick="actions()">actions</button>
+        </div>
+        <div class="menu" id="mainMenu">
+            <button class="menuButton">Save</button>
+            <button class="menuButton" onclick="stats()">Stats</button>
+            <button class="menuButton" onclick="lore()">Lore</button>
+            <button class="menuButton" onclick="credits()">Credits</button>
+            <button class="menuButton" onclick="about()">About</button>
+        </div>
+        <div class="shop" id="shop">
+            <div class="shopItem">
+                <img src="./assets/sword_02b.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">Sword</p>
+                    <p class="shopItemDesc">2x click</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/armor_01d.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">Armor</p>
+                    <p class="shopItemDesc">2x resistance</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/shield_02d.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">shield</p>
+                    <p class="shopItemDesc">2x xp</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/necklace_02d.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">necklace</p>
+                    <p class="shopItemDesc">2x AutoClick</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/ring_03d.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">ring</p>
+                    <p class="shopItemDesc">2x afk click</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/potion_01f.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">potion of fast clicking</p>
+                    <p class="shopItemDesc">10x click for 60s</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/potion_02a.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">potion of ultimate clicking</p>
+                    <p class="shopItemDesc">30x click for 60s</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/potion_03a.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">potion of god clicking</p>
+                    <p class="shopItemDesc">69x click for 60s</p>
+                </div>
+            </div>
+
+            <div class="shopItem">
+                <img src="./assets/Abandoned Hardware.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">Abandoned Hardware</p>
+                    <p class="shopItemDesc">cool background</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/Beauty Potion V2.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">Beauty Potion</p>
+                    <p class="shopItemDesc">maybe even cooler background</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/Coop Intruder.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">Coop Intruder</p>
+                    <p class="shopItemDesc">super cool background</p>
+                </div>
+            </div>
+            <div class="shopItem">
+                <img src="./assets/New Letter.png" alt="">
+                <div class="shopItemTex">
+                    <p class="shopItemName">New Letter</p>
+                    <p class="shopItemDesc">OK, this is just flex</p>
+                </div>
+            </div>
+        </div>
+        <div class="quests" id="quests">
+            <div class="questItem">
+                <p>Click 300 times</p>
+                <div class="progressBar">
+                    <div class="progressBarFiller"></div>
+                </div>
+            </div>
+            <div class="questItem">
+                <p>Click 300 times</p>
+                <div class="progressBar">
+                    <div class="progressBarFiller"></div>
+                </div>
+            </div>
+            <div class="questItem">
+                <p>Click 300 times</p>
+                <div class="progressBar">
+                    <div class="progressBarFiller"></div>
+                </div>
+            </div>
+        </div>
+        <div class="actions" id="actions">
+            <div class="actionItem" onclick="bossFight()">
+                <img src="./assets/helmet_02b.png" alt="">
+                <div class="actionItemTex">
+                    <p class="actionItemName">Fight with goblin</p>
+                    <p class="actionItemDesc">500 HP 3CPS</p>
+                </div>
+            </div>
+            <div class="actionItem" onclick="bossFight()">
+                <img src="./assets/hat_01f.png" alt="">
+                <div class="actionItemTex">
+                    <p class="actionItemName">Fight with dark lord</p>
+                    <p class="actionItemDesc">5000 HP 6CPS</p>
+                </div>
+            </div>
+            <div class="actionItem">
+                <img src="./assets/skull_01a.png" alt="">
+                <div class="actionItemTex">
+                    <p class="actionItemName">Jump off the cliff</p>
+                    <p class="actionItemDesc">2x bonus for your next life</p>
+                </div>
+            </div> 
+        </div>
+        <div class="credits" id="credits">
+            <h2>Thanks to this awesome artists
+            </h2>
+            <a href="https://edermunizz.itch.io/free-pixel-art-forest" target="_blank">background image: by Eder Muniz</a>
+            <a href="https://kyrise.itch.io/kyrises-free-16x16-rpg-icon-pack" target="_blank">pixel art icons: by Kyrise</a>
+            <a href="https://clembod.itch.io/warrior-free-animation-set" target="_blank">character: by Clembod</a>
+            <a href="https://royal-naym.itch.io/dark-nights-wallpaper-pack" target="_blank">other background images: by Royal Naym</a>
+            <p>Code, design and rest is by Lukáš Kníže</p>
+        </div>
+        <div class="about" id="about">
+            <h2>cool game I gues UwU
+            </h2>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">for more</a>
+        </div>
+        <div class="bossFight" id="bossFight">
+            <h2>Click as fast as you can</h2>
+            <div class="character">
+                <img src="assets/attackGif.gif" alt="">
+                <div class="characterStats">
+                    <p>You</p>
+                    <div class="HPBar">
+                        <div class="HPBarFiller"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="character">
+                <img src="assets/helmet_02b.png" alt="">
+                <div class="characterStats">
+                    <p>goblin</p>
+                    <div class="HPBar">
+                        <div class="HPBarFiller"></div>
+                    </div>
+                </div>
+            </div>
+            <h3>CLICK!!!</h3>
+        </div>
+        <div class="stats" id="stats">
+            <div class="statItem">
+                <p>Click multiplyer: <span id="clm">1</span>x</p>
+            </div>
+            <div class="statItem">
+                <p>Resistance: <span id="resist">1</span></p>
+            </div>
+            <div class="statItem">
+                <p><span id="curentXp">0</span>/<span id="nextLevel">10</span></p>
+                <div class="progressBar">
+                    <div class="progressBarFiller"></div>
+                </div>
+            </div>
+            <div class="statItem">
+                <p>AutoClick: <span id="AutoClick">0</span>CPS</p>
+            </div>
+            <div class="statItem">
+                <p>AFK-Click: <span id="AFKCLick">0</span>CPS</p>
+            </div>
+            <div class="statItem">
+                <p>isekai bonus: <span id="isekaiBonus">1</span>x</p>
+            </div>
+        </div>
+        <div class="lore" id="lore">
+            <h2>isekai worlds lore</h2>
+            <p>lore, more like Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nulla totam doloremque, excepturi delectus magni reiciendis qui ab, quam, consequuntur harum architecto ipsum recusandae aspernatur voluptatum atque iure provident pariatur.</p>
+        </div>
+    </main>
+    <div id="textBox" class="textBox">
+        <img src="./assets/waterIsekai.png" alt="">
+        <div class="textBoxContainer">
+            <p id="textBoxOutput"></p>
+            <i class="fas fa-caret-right" onclick="nextText()"></i>
+        </div>
+    </div>
+    <script src="menu.js"></script>
+    <script src="textScript.js"></script>
+</body>
+</html>

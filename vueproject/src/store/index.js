@@ -91,13 +91,14 @@ export default new Vuex.Store({
       owned: false
     }
   ],
-  money: ["x", 0, "x", "x"],
-  rgroianaoror: ["x", "x", 0, "x"],
+  money: ["x", 20000, "x", "x"],
+  rgroianaoror: ["x", "x", 20000, "x"],
   position: 1,
   shiftedpos: 2,
   xp: 0,
   nextXp: 10,
-  level: 1
+  level: 1,
+  date: ''
   },
   getters: {
   },
@@ -143,6 +144,10 @@ export default new Vuex.Store({
     buyUpgrade(state, data){
       state.shopitems[data].level += 1;
       state.shopitems[data].price *= 2;
+    },
+
+    updateTime(state, data){
+      state.date = data;
     }
   },
   actions: {
@@ -151,6 +156,9 @@ export default new Vuex.Store({
     },
     buyUpgrade({ state, commit }, data) {
       commit('buyUpgrade', data)
+    },
+    updateTime({ state, commit }, data) {
+      commit('updateTime', data)
     },
   },
   modules: {

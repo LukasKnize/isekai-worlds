@@ -1,0 +1,435 @@
+$darkGreen: #146356;
+$lightGreen: #a3da8d;
+$superLightBrown: #fff1bd;
+$lightBrown: #f3c892;
+
+body {
+    background-color: gray;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("./assets/Background.png");
+    background-size: cover;
+    background-position: bottom;
+    h1 {
+        font-family: "DotGothic16", sans-serif;
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-left: 30px;
+        margin-top: 30px;
+        color: $superLightBrown;
+        font-size: 2em;
+    }
+    .logo {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-left: 100px;
+        margin-top: 50px;
+        width: 100px;
+    }
+}
+
+main {
+    font-family: "VT323", monospace;
+    font-size: 1.4em;
+    width: 360px;
+    height: 640px;
+    background-color: $superLightBrown;
+    position: relative;
+    .head {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        background-color: $darkGreen;
+        .xp,
+        .money {
+            color: $lightGreen;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button {
+            width: 50px;
+            height: 50px;
+            background-color: $lightGreen;
+            color: $darkGreen;
+            border: none;
+        }
+    }
+    .midle {
+        height: 540px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-position: center;
+        background-size: cover;
+        img {
+            max-height: 250px;
+        }
+    }
+    .bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 2px;
+        height: 50px;
+        width: 100%;
+        background-color: $darkGreen;
+        button {
+            border: none;
+            background-color: $lightGreen;
+            color: $darkGreen;
+            cursor: pointer;
+            font-family: "VT323", monospace;
+            font-size: 1.5em;
+        }
+    }
+    .menu {
+        width: 100%;
+        height: 540px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        background-color: $lightGreen;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 20px;
+        display: none;
+        .menuButton {
+            width: 90%;
+            height: 50px;
+            background-color: $lightBrown;
+            color: $darkGreen;
+            font-family: "VT323", monospace;
+            font-size: 1.5em;
+        }
+    }
+    .shop {
+        width: 100%;
+        height: 540px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        background-color: $lightGreen;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+        display: none;
+        overflow-y: scroll;
+        .shopItem {
+            width: 90%;
+            height: 70px;
+            background-color: $lightBrown;
+            color: $darkGreen;
+            display: flex;
+            border: 3px $darkGreen solid;
+            &:first-child {
+                margin-top: 20px;
+            }
+            img {
+                width: 64px;
+                border: 3px $darkGreen solid;
+            }
+            .shopItemTex {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    .quests {
+        width: 100%;
+        height: 540px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        background-color: $lightGreen;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+        display: none;
+        overflow-y: scroll;
+        .questItem {
+            width: 90%;
+            height: 70px;
+            background-color: $lightBrown;
+            color: $darkGreen;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 3px $darkGreen solid;
+            &:first-child {
+                margin-top: 20px;
+            }
+            p {
+                color: $darkGreen;
+            }
+            .progressBar {
+                width: 90%;
+                height: 10px;
+                border: 2px solid $darkGreen;
+                border-radius: 5px;
+                .progressBarFiller {
+                    width: 30%;
+                    height: 100%;
+                    background-color: $darkGreen;
+                }
+            }
+        }
+    }
+    .actions {
+        width: 100%;
+        height: 540px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        background-color: $lightGreen;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+        display: none;
+        .actionItem {
+            width: 90%;
+            height: 70px;
+            background-color: $lightBrown;
+            color: $darkGreen;
+            display: flex;
+            border: 3px $darkGreen solid;
+            &:first-child {
+                margin-top: 20px;
+            }
+            img {
+                width: 64px;
+                border: 3px $darkGreen solid;
+            }
+            .actionItemTex {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    .credits {
+        width: 100%;
+        height: 540px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        background-color: $lightGreen;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+        display: none;
+        text-align: center;
+        h2 {
+            margin-top: 20px;
+            font-size: 1.4em;
+        }
+    }
+    .about,
+    .lore {
+        width: 100%;
+        height: 540px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        background-color: $lightGreen;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+        display: none;
+        text-align: center;
+        h2 {
+            margin-top: 20px;
+            font-size: 1.4em;
+        }
+    }
+    .bossFight {
+        width: 100%;
+        height: 540px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        background-color: $lightGreen;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+        display: none;
+        text-align: center;
+        h2 {
+            font-size: 1.5em;
+        }
+        .character {
+            width: 90%;
+            height: 70px;
+            background-color: $lightBrown;
+            color: $darkGreen;
+            display: flex;
+            border: 3px $darkGreen solid;
+            &:first-child {
+                margin-top: 20px;
+            }
+            img {
+                width: 64px;
+                border: 3px $darkGreen solid;
+            }
+            h3 {
+                font-size: 3em;
+                color: $darkGreen;
+                margin-top: 60px;
+            }
+            .characterStats {
+                width: inherit;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .HPBar {
+                    width: 200px;
+                    height: 10px;
+                    border: 2px solid $darkGreen;
+                    border-radius: 5px;
+                    .HPBarFiller {
+                        width: 30%;
+                        height: 100%;
+                        background-color: $darkGreen;
+                    }
+                }
+            }
+        }
+    }
+    .stats {
+        width: 100%;
+        height: 540px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        background-color: $lightGreen;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+        display: none;
+        overflow-y: scroll;
+        .statItem {
+            width: 90%;
+            height: 60px;
+            background-color: $lightBrown;
+            color: $darkGreen;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 3px $darkGreen solid;
+            &:first-child {
+                margin-top: 20px;
+            }
+            p {
+                color: $darkGreen;
+            }
+            .progressBar {
+                width: 90%;
+                height: 10px;
+                border: 2px solid $darkGreen;
+                border-radius: 5px;
+                .progressBarFiller {
+                    width: 30%;
+                    height: 100%;
+                    background-color: $darkGreen;
+                }
+            }
+        }
+    }
+    .show {
+        display: flex;
+    }
+}
+
+.textBox {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    height: 100px;
+    position: absolute;
+    top: 100%;
+    margin-top: -150px;
+    left: 50%;
+    margin-left: -200px;
+    background-color: $lightGreen;
+    img {
+        width: 80px;
+        height: 80px;
+        padding: 10px;
+        border: $darkGreen 2px solid;
+    }
+    .textBoxContainer {
+        color: $darkGreen;
+        padding: 0 20px;
+        height: 100px;
+        width: 300px;
+        font-family: "VT323", monospace;
+        font-size: 1.5em;
+        border: $darkGreen 2px solid;
+        position: relative;
+        .fa-caret-right {
+            position: absolute;
+            left: 100%;
+            top: 100%;
+            margin-left: -15px;
+            margin-top: -25px;
+            cursor: pointer;
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #14635648;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $darkGreen;
+}
+
+::selection {
+    background-color: transparent;
+}
+
+//Tohoto si prosím nevšímejte, toto je jen nedodělaná responzivita
+
+@media (max-width: 400px) {
+    main {
+        font-family: "VT323", monospace;
+        font-size: 1.4em;
+        width: 320px;
+        height: 100%;
+        max-height: 100vh;
+        background-color: #fff1bd;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        .midle {
+            height: inherit;
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+}
