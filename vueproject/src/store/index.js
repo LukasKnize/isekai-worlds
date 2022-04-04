@@ -98,14 +98,17 @@ export default new Vuex.Store({
   xp: 0,
   nextXp: 10,
   level: 1,
-  date: ''
+  date: '',
+  textIndex: 0,
+  totalMoney: 0,
+  totalClick: 0
   },
   getters: {
   },
   mutations: {
     updateCoins(state, data){
 
-      //👀 geniální anticheat, asi ho budu ještě zdokonalovat, protože zde k překonání stačí základní znalost js 👀
+      //👀 geniální anticheat 👀
 
       let oldCheck = [...state.rgroianaoror];
       oldCheck.pop();
@@ -140,6 +143,10 @@ export default new Vuex.Store({
         state.money[state.position] = oldCheck[state.shiftedpos];
         state.rgroianaoror = oldCheck;
       }
+
+      if (data >= 1) {
+        state.totalMoney += data; 
+      }
     },
     buyUpgrade(state, data){
       state.shopitems[data].level += 1;
@@ -148,6 +155,12 @@ export default new Vuex.Store({
 
     updateTime(state, data){
       state.date = data;
+    },
+    updateTextIndex(state, data){
+      state.textIndex = data;
+    },
+    clickCounter(state){
+      state.totalClick++;
     }
   },
   actions: {
@@ -160,6 +173,12 @@ export default new Vuex.Store({
     updateTime({ state, commit }, data) {
       commit('updateTime', data)
     },
+    updateTextIndex({state, commit}, data){
+      commit('updateTextIndex', data)
+    },
+    clickCounter({state, commit}){
+      commit('clickCounter')
+    }
   },
   modules: {
   },

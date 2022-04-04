@@ -7,6 +7,7 @@
       <Bottom @openMenu="openMenu" />
       <component :is="menu" @moneyChange="moneyChange" @openMenu="openMenu">
       </component>
+      <component :is="textBox" v-bind="{afk: afkMoney}"></component>
     </main>
     <p class="status">autoClick: {{ runAutoClick }}</p>
   </div>
@@ -25,7 +26,9 @@ import Lore from "./components/lore.vue";
 import About from "./components/about.vue";
 import Credits from "./components/credits.vue";
 import BossFight from "./components/bossfight.vue";
+import TextBoxDialog from "./components/textBoxDialog.vue";
 
+//21600 
 export default {
   name: "App",
   components: {
@@ -41,6 +44,7 @@ export default {
     Credits: Credits,
     About: About,
     BossFight: BossFight,
+    TextBoxDialog: TextBoxDialog
   },
   data() {
     return {
@@ -48,6 +52,8 @@ export default {
       autoInterval: "",
       autoRunning: false,
       timeInterval: "",
+      textBox: TextBoxDialog,
+      afkMoney: 0
     };
   },
   methods: {
@@ -61,6 +67,7 @@ export default {
 
     middleClick() {
       this.moneyChange(1 * this.$store.state.shopitems[0].level);
+      this.$store.dispatch("clickCounter");
     },
 
     moneyChange(data) {
@@ -97,7 +104,8 @@ export default {
       return "ok";
     },
   },
-  async mounted() {
+  created() {
+    //spouští autoClick
     if (
       this.$store.state.shopitems[3].level >= 1 &&
       this.autoRunning == false
@@ -105,18 +113,32 @@ export default {
       this.autoClick();
     }
 
+    //afk bonus, maximálně 6 hodin
+    let newTime = new Date();
+    let oldTime = Date.parse(this.$store.state.date);
+    let dif = Math.abs(oldTime - Date.parse(newTime));
+    let afk = Math.floor(dif / 1000)
+    if(afk >= 21600){
+      afk = 21600
+    }
+    afk *= this.$store.state.shopitems[4].level;
+    console.log(afk);
+    this.moneyChange(afk);
+    this.afkMoney = afk;
+
+    //spouští kontrolu času
     this.updateTime();
-    const responseTime = await fetch(
-      "https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam",
-      {
-        method: "GET",
-        mode: "no-cors",
-        headers: {
-          "accept": "application/json",
-        },
-      }
-    );
-    console.log(responseTime);
+    // const responseTime = await fetch(
+    //   "https://www.timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam",
+    //   {
+    //     method: "GET",
+    //     mode: "no-cors",
+    //     headers: {
+    //       "accept": "application/json",
+    //     },
+    //   }
+    // );
+    // console.log(responseTime);
   },
 };
 </script>
