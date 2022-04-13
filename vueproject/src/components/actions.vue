@@ -5,14 +5,14 @@
       <img src="@/assets/helmet_02b.png" alt="" />
       <div class="actionItemTex">
         <p class="actionItemName">Fight with goblin</p>
-        <p class="actionItemDesc">500 HP 3CPS</p>
+        <p class="actionItemDesc">{{this.$store.state.enemy1[0]}}HP 3CPS</p>
       </div>
     </div>
     <div class="actionItem" @click="openMenu('BossFight')">
       <img src="@/assets/hat_01f.png" alt="" />
       <div class="actionItemTex">
         <p class="actionItemName">Fight with dark lord</p>
-        <p class="actionItemDesc">5000 HP 6CPS</p>
+        <p class="actionItemDesc">{{this.$store.state.enemy2[0]}}HP 6CPS</p>
       </div>
     </div>
     <div class="actionItem">

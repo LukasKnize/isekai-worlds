@@ -101,7 +101,9 @@ export default new Vuex.Store({
   date: '',
   textIndex: 0,
   totalMoney: 0,
-  totalClick: 0
+  totalClick: 0,
+  enemy1: [500, 750, 800, 1000, 1500, 2000],
+  enemy2: [5000, 6000, 7000, 8000, 10000]
   },
   getters: {
   },
