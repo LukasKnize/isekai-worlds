@@ -31,11 +31,11 @@ export default {
       enemyClick: 0,
       interval: "",
       prize: 0,
+      enemyHP: 0,
     };
   },
   props: {
-    enemyCPS: 0,
-    enemyDef: 0,
+    parameter: Number,
   },
   methods: {
     clicking() {
@@ -43,6 +43,16 @@ export default {
     },
 
     enemy() {},
+
+    startFight() {},
+  },
+  mounted() {
+    if (this.parameter == 1) {
+      this.enemyHP = this.$store.state.enemy1[0];
+    }else{
+      this.enemyHP = this.$store.state.enemy2[0];
+    }
+    console.log(this.parameter)
   },
 };
 </script>

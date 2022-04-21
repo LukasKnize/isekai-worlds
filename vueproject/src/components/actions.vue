@@ -1,14 +1,14 @@
 <template>
   <!-- Tuto část budu ještě dodělávat-->
   <div class="actions show" id="actions">
-    <div class="actionItem" @click="openMenu('BossFight')">
+    <div class="actionItem" @click="openMenu('BossFight', 1)">
       <img src="@/assets/helmet_02b.png" alt="" />
       <div class="actionItemTex">
         <p class="actionItemName">Fight with goblin</p>
         <p class="actionItemDesc">{{this.$store.state.enemy1[0]}}HP 3CPS</p>
       </div>
     </div>
-    <div class="actionItem" @click="openMenu('BossFight')">
+    <div class="actionItem" @click="openMenu('BossFight', 2)">
       <img src="@/assets/hat_01f.png" alt="" />
       <div class="actionItemTex">
         <p class="actionItemName">Fight with dark lord</p>

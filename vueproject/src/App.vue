@@ -5,7 +5,7 @@
       <Head @openMainMenu="openMenu" />
       <Middle @middleclicked="middleClick()" />
       <Bottom @openMenu="openMenu" />
-      <component :is="menu" @moneyChange="moneyChange" @openMenu="openMenu">
+      <component :is="menu" @moneyChange="moneyChange" @openMenu="openMenu" v-bind="{parameter: parameter}"  >
       </component>
       <component :is="textBox" v-bind="{afk: afkMoney}"></component>
     </main>
@@ -53,12 +53,16 @@ export default {
       autoRunning: false,
       timeInterval: "",
       textBox: TextBoxDialog,
-      afkMoney: 0
+      afkMoney: 0,
+      parameter: ""
     };
   },
   methods: {
-    openMenu(typeOfMenu) {
-      if (this.menu != typeOfMenu) {
+    openMenu(typeOfMenu, parameter = 0) {
+      if (this.menu != typeOfMenu && typeOfMenu == "BossFight") {
+        this.parameter = parameter;
+        this.menu = typeOfMenu;
+      }else if (this.menu != typeOfMenu) {
         this.menu = typeOfMenu;
       } else {
         this.menu = "";
