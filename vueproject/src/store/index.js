@@ -152,6 +152,11 @@ export default new Vuex.Store({
     },
     buyUpgrade(state, data){
       state.shopitems[data].level += 1;
+      state.xp += state.shopitems[data].level
+      if (state.xp >= state.nextXp) {
+        state.level += 1
+        state.nextXp *= state.nextXp
+      }
       state.shopitems[data].price *= 2;
     },
 
@@ -166,12 +171,22 @@ export default new Vuex.Store({
     },
     buyPotion(state, data){
       state.shopitems[data].owned = true;
+      state.xp += state.shopitems[data].price / 10
+      if (state.xp >= state.nextXp) {
+        state.level += 1
+        state.nextXp *= state.nextXp
+      }
     },
     usedPotion(state, data){
       state.shopitems[data].owned = false;
     },
     toggleImg(state, data){
       state.shopitems[data].owned = true;
+      state.xp += state.shopitems[data].price / 10
+      if (state.xp >= state.nextXp) {
+        state.level += 1
+        state.nextXp *= state.nextXp
+      }
     }
   },
   actions: {

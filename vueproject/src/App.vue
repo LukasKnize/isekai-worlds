@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <h1>異世界 worlds</h1>
-    <main>
+    <main v-bind:class="[backGroundImg]">
       <Head @openMainMenu="openMenu" />
       <Middle @middleclicked="middleClick()" />
+      <!--<img :src="require(`@/assets/${this.backGroundImg}`)" style="width: 50px" alt="">-->
       <Bottom @openMenu="openMenu" />
       <component
         :is="menu"
@@ -19,6 +20,8 @@
 </template>
 
 <script>
+//v-bind:style="{backgroundImage: 'url(' + require(`~@/src/assets/Background.png`) + ')'}"
+//v-bind:style="{backgroundImage: 'url(' + require(`./assets/${this.backGroundImg}`) + ')'}"
 import Head from "./components/head.vue";
 import Middle from "./components/middle.vue";
 import Bottom from "./components/bottom.vue";
@@ -63,7 +66,10 @@ export default {
       boostTimeOut: "",
       boost: 1,
       potionType: 0,
+      //backGroundImg: `background-image: url("../assets/Abandoned Hardware.png");`,
+      backGroundImg: "AbandonedHardware"
     };
+
   },
   methods: {
     openMenu(typeOfMenu) {
@@ -218,6 +224,10 @@ body h1 {
   margin-top: 30px;
   color: #fff1bd;
   font-size: 2em;
+}
+
+.AbandonedHardware{
+  background-image: url("./assets/Background.png");;
 }
 
 .status {

@@ -49,11 +49,11 @@ export default {
         if (this.$store.state.money[this.$store.state.position] >= this.$store.state.shopitems[this.index].price && this.index <= 4) {
             this.$emit("moneyChange", this.$store.state.shopitems[this.index].price * -1)
             this.$store.dispatch("buyUpgrade", this.index);
-        }else if (this.$store.state.money[this.$store.state.position] >= this.$store.state.shopitems[this.index].price && this.index <= 7 && this.index >= 5) {
+        }else if (this.$store.state.money[this.$store.state.position] >= this.$store.state.shopitems[this.index].price && this.index <= 7 && this.index >= 5 && !this.$store.state.shopitems[this.index].owned) {
             this.$emit("moneyChange", this.$store.state.shopitems[this.index].price * -1)
             this.$store.dispatch("buyPotion", this.index);
         }else if (this.index <= 11 && this.$store.state.shopitems[this.index].owned && this.index >= 8) {
-          document.body.style.backgroundImage = "url('src/assets/" + this.image + "')";
+          document.body.style.backgroundImage = "url('/assets/" + this.image + "')";
         }else if (this.$store.state.money[this.$store.state.position] >= this.$store.state.shopitems[this.index].price && this.index <= 11 && this.index >= 8) {
           document.body.style.backgroundImage = "url(" + `@/assets/${this.image}` + ")";
           this.$emit("moneyChange", this.$store.state.shopitems[this.index].price * -1);
