@@ -91,8 +91,8 @@ export default new Vuex.Store({
       owned: false
     }
   ],
-  money: ["x", 20000, "x", "x"],
-  rgroianaoror: ["x", "x", 20000, "x"],
+  money: ["x", 20000000, "x", "x"],
+  rgroianaoror: ["x", "x", 20000000, "x"],
   position: 1,
   shiftedpos: 2,
   xp: 0,
@@ -163,6 +163,15 @@ export default new Vuex.Store({
     },
     clickCounter(state){
       state.totalClick++;
+    },
+    buyPotion(state, data){
+      state.shopitems[data].owned = true;
+    },
+    usedPotion(state, data){
+      state.shopitems[data].owned = false;
+    },
+    toggleImg(state, data){
+      state.shopitems[data].owned = true;
     }
   },
   actions: {
@@ -180,6 +189,15 @@ export default new Vuex.Store({
     },
     clickCounter({state, commit}){
       commit('clickCounter')
+    },
+    buyPotion({ state, commit }, data) {
+      commit('buyPotion', data)
+    },
+    usedPotion({ state, commit }, data) {
+      commit('usedPotion', data)
+    },
+    toggleImg({state, commit}, data){
+      commit('toggleImg', data)
     }
   },
   modules: {

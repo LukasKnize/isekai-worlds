@@ -5,9 +5,14 @@
       <Head @openMainMenu="openMenu" />
       <Middle @middleclicked="middleClick()" />
       <Bottom @openMenu="openMenu" />
-      <component :is="menu" @moneyChange="moneyChange" @openMenu="openMenu" v-bind="{parameter: parameter}"  >
+      <component
+        :is="menu"
+        @moneyChange="moneyChange"
+        @openMenu="openMenu"
+        v-bind="{ parameter: parameter }"
+      >
       </component>
-      <component :is="textBox" v-bind="{afk: afkMoney}"></component>
+      <component :is="textBox" v-bind="{ afk: afkMoney }"></component>
     </main>
     <p class="status">autoClick: {{ runAutoClick }}</p>
   </div>
@@ -28,7 +33,7 @@ import Credits from "./components/credits.vue";
 import BossFight from "./components/bossfight.vue";
 import TextBoxDialog from "./components/textBoxDialog.vue";
 
-//21600 
+//21600
 export default {
   name: "App",
   components: {
@@ -44,7 +49,7 @@ export default {
     Credits: Credits,
     About: About,
     BossFight: BossFight,
-    TextBoxDialog: TextBoxDialog
+    TextBoxDialog: TextBoxDialog,
   },
   data() {
     return {
@@ -54,15 +59,19 @@ export default {
       timeInterval: "",
       textBox: TextBoxDialog,
       afkMoney: 0,
-      parameter: ""
+      parameter: "",
+      boostTimeOut: "",
+      boost: 1,
+      potionType: 0,
     };
   },
   methods: {
-    openMenu(typeOfMenu, parameter = 0) {
-      if (this.menu != typeOfMenu && typeOfMenu == "BossFight") {
-        this.parameter = parameter;
-        this.menu = typeOfMenu;
-      }else if (this.menu != typeOfMenu) {
+    openMenu(typeOfMenu) {
+      console.log(typeOfMenu);
+      if (this.menu != typeOfMenu && typeOfMenu.typeOfMenu == "BossFight") {
+        this.parameter = typeOfMenu.parameter;
+        this.menu = typeOfMenu.typeOfMenu;
+      } else if (this.menu != typeOfMenu) {
         this.menu = typeOfMenu;
       } else {
         this.menu = "";
@@ -70,7 +79,26 @@ export default {
     },
 
     middleClick() {
-      this.moneyChange(1 * this.$store.state.shopitems[0].level);
+      if (this.$store.state.shopitems[5].owned == true) {
+        this.boost = 10;
+        this.potionType = 5;
+        if (this.boostTimeOut == "") {
+          this.startBoostTimeOut();
+        }
+      } else if (this.$store.state.shopitems[6].owned == true) {
+        this.boost = 30;
+        this.potionType = 6;
+        if (this.boostTimeOut == "") {
+          this.startBoostTimeOut();
+        }
+      } else if (this.$store.state.shopitems[7].owned == true) {
+        this.boost = 69;
+        this.potionType = 7;
+        if (this.boostTimeOut == "") {
+          this.startBoostTimeOut();
+        }
+      }
+      this.moneyChange(1 * this.$store.state.shopitems[0].level * this.boost);
       this.$store.dispatch("clickCounter");
     },
 
@@ -82,6 +110,15 @@ export default {
       this.timeInterval = setInterval(() => {
         this.$store.dispatch("updateTime", new Date());
       }, 1000);
+    },
+
+    startBoostTimeOut() {
+      this.boostTimeOut = setTimeout(() => {
+        this.$store.dispatch("usedPotion", this.potionType);
+        this.boost = 1;
+        this.potionType = 0;
+        console.log("finishd")
+      }, 60000);
     },
 
     autoClick() {
@@ -121,9 +158,9 @@ export default {
     let newTime = new Date();
     let oldTime = Date.parse(this.$store.state.date);
     let dif = Math.abs(oldTime - Date.parse(newTime));
-    let afk = Math.floor(dif / 1000)
-    if(afk >= 21600){
-      afk = 21600
+    let afk = Math.floor(dif / 1000);
+    if (afk >= 21600) {
+      afk = 21600;
     }
     afk *= this.$store.state.shopitems[4].level;
     console.log(afk);

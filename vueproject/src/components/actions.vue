@@ -29,8 +29,9 @@
 export default {
   name: "actions",
   methods: {
-    openMenu(data) {
-      this.$emit("openMenu", data);
+    openMenu(data, parameter) {
+      console.log({typeOfMenu: data, parameter: parameter})
+      this.$emit("openMenu", {typeOfMenu: data, parameter: parameter});
     },
   },
 };
