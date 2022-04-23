@@ -51,13 +51,13 @@ export default {
             this.$store.dispatch("buyUpgrade", this.index);
         }else if (this.$store.state.money[this.$store.state.position] >= this.$store.state.shopitems[this.index].price && this.index <= 7 && this.index >= 5 && !this.$store.state.shopitems[this.index].owned) {
             this.$emit("moneyChange", this.$store.state.shopitems[this.index].price * -1)
+            this.$emit("textBoxControler", "potionText");
             this.$store.dispatch("buyPotion", this.index);
         }else if (this.index <= 11 && this.$store.state.shopitems[this.index].owned && this.index >= 8) {
-          document.body.style.backgroundImage = "url('/assets/" + this.image + "')";
-        }else if (this.$store.state.money[this.$store.state.position] >= this.$store.state.shopitems[this.index].price && this.index <= 11 && this.index >= 8) {
-          document.body.style.backgroundImage = "url(" + `@/assets/${this.image}` + ")";
-          this.$emit("moneyChange", this.$store.state.shopitems[this.index].price * -1);
           this.$store.dispatch("toggleImg", this.index);
+        }else if (this.$store.state.money[this.$store.state.position] >= this.$store.state.shopitems[this.index].price && this.index <= 11 && this.index >= 8) {
+          this.$emit("moneyChange", this.$store.state.shopitems[this.index].price * -1);
+          this.$store.dispatch("buyImg", this.index);
         }
     },
   },

@@ -1,6 +1,6 @@
 <template>
     <div class="shop show" id="shop">
-        <Shopitem v-for="(item, index) in products" :key="index" :image="item.image" :name="item.name" :desc="item.desc" :index="index" @moneyChange="moneyChange" />
+        <Shopitem v-for="(item, index) in products" :key="index" :image="item.image" :name="item.name" :desc="item.desc" :index="index" @moneyChange="moneyChange" @textBoxControler="textBoxControler" />
         </div>
 </template>
 
@@ -23,6 +23,9 @@ export default {
    methods: {
        moneyChange(data){
            this.$emit("moneyChange", data)
+       },
+       textBoxControler(data){
+           this.$emit("textBoxControler", data)
        }
    }
 }

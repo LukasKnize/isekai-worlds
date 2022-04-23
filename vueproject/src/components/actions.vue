@@ -15,7 +15,7 @@
         <p class="actionItemDesc">{{this.$store.state.enemy2[0]}}HP 6CPS</p>
       </div>
     </div>
-    <div class="actionItem">
+    <div class="actionItem" @click="jump()">
       <img src="@/assets/skull_01a.png" alt="" />
       <div class="actionItemTex">
         <p class="actionItemName">Jump off the cliff</p>
@@ -33,6 +33,13 @@ export default {
       console.log({typeOfMenu: data, parameter: parameter})
       this.$emit("openMenu", {typeOfMenu: data, parameter: parameter});
     },
+    jump(){
+      if (this.$store.state.canBeIsekai) {
+        this.$store.dispatch("reset");
+      }else{
+        this.$emit("textBoxControler", "youCantJumpNow");
+      }
+    }
   },
 };
 </script>

@@ -1,27 +1,29 @@
 <template>
   <div id="app">
     <h1>異世界 worlds</h1>
-    <main v-bind:class="[backGroundImg]">
+    <main
+      v-bind:style="{
+        backgroundImage: 'url(' + require(`@/assets/${backgr}`) + ')',
+      }"
+    >
       <Head @openMainMenu="openMenu" />
       <Middle @middleclicked="middleClick()" />
-      <!--<img :src="require(`@/assets/${this.backGroundImg}`)" style="width: 50px" alt="">-->
       <Bottom @openMenu="openMenu" />
       <component
         :is="menu"
         @moneyChange="moneyChange"
         @openMenu="openMenu"
         v-bind="{ parameter: parameter }"
+        @textBoxControler="textBoxControler"
       >
       </component>
-      <component :is="textBox" v-bind="{ afk: afkMoney }"></component>
+      <component :is="textBox" @closeTextBox="closeTextBox"></component>
     </main>
     <p class="status">autoClick: {{ runAutoClick }}</p>
   </div>
 </template>
 
 <script>
-//v-bind:style="{backgroundImage: 'url(' + require(`~@/src/assets/Background.png`) + ')'}"
-//v-bind:style="{backgroundImage: 'url(' + require(`./assets/${this.backGroundImg}`) + ')'}"
 import Head from "./components/head.vue";
 import Middle from "./components/middle.vue";
 import Bottom from "./components/bottom.vue";
@@ -60,20 +62,16 @@ export default {
       autoInterval: "",
       autoRunning: false,
       timeInterval: "",
-      textBox: TextBoxDialog,
+      textBox: "",
       afkMoney: 0,
       parameter: "",
       boostTimeOut: "",
       boost: 1,
       potionType: 0,
-      //backGroundImg: `background-image: url("../assets/Abandoned Hardware.png");`,
-      backGroundImg: "AbandonedHardware"
     };
-
   },
   methods: {
     openMenu(typeOfMenu) {
-      console.log(typeOfMenu);
       if (this.menu != typeOfMenu && typeOfMenu.typeOfMenu == "BossFight") {
         this.parameter = typeOfMenu.parameter;
         this.menu = typeOfMenu.typeOfMenu;
@@ -104,7 +102,7 @@ export default {
           this.startBoostTimeOut();
         }
       }
-      this.moneyChange(1 * this.$store.state.shopitems[0].level * this.boost);
+      this.moneyChange(1 * this.$store.state.shopitems[0].level * this.boost * this.$store.state.isekaiBonus);
       this.$store.dispatch("clickCounter");
     },
 
@@ -123,16 +121,60 @@ export default {
         this.$store.dispatch("usedPotion", this.potionType);
         this.boost = 1;
         this.potionType = 0;
-        console.log("finishd")
       }, 60000);
     },
 
     autoClick() {
       this.autoRunning = true;
       this.autoInterval = setInterval(() => {
-        this.moneyChange(1 * this.$store.state.shopitems[3].level);
+        this.moneyChange(1 * this.$store.state.shopitems[3].level * this.$store.state.isekaiBonus);
       }, 1000);
     },
+    textBoxControler(param) {
+      let firstText = [
+        "Hi I'm Water, cheap Aqua knockoff.",
+        "Yea that useless Aqua from KonoSuba.",
+        "And to be honest, I'm bit useless too...",
+        "So, I will take you through the whole game.",
+        "Basically all you need is to click as fast as possible.",
+      ];
+      let afkBonusText = ["here is your afk bonus: " + this.afkMoney];
+      let potionText = [
+        "your potion will be activated after clicking to screen with your character",
+      ];
+      let bossFightText = [
+        "you need to click as fast as posible to kill your enemy",
+        "if you can beat him, you will get some money and xp!",
+        "however if he wins, there is chance that you might lose one level",
+        "you can still surrender by simply exiting back to menu",
+        "fight starts when you click to that empty space under the stats",
+        "you can't exit fight once it started",
+        "so Good Luck!",
+      ];
+      let youCantJumpNow = ["you need to finish all quests first"];
+      let youCanBeIsekaied = [
+        "you can now jump of the cliff and get reincarnated back here",
+        "you will lose all your progress, but you'll get small bonus to your next life",
+        "you'll get: " + (this.$store.state.isekaiBonus + 1) + "x bonus",
+      ];
+      if (param == "firstText") {
+        this.$store.dispatch("changeText", firstText);
+      } else if (param == "afkBonusText") {
+        this.$store.dispatch("changeText", afkBonusText);
+      } else if (param == "potionText") {
+        this.$store.dispatch("changeText", potionText);
+      }else if (param == "bossFightText") {
+        this.$store.dispatch("changeText", bossFightText);
+      }else if (param == "youCantJumpNow") {
+        this.$store.dispatch("changeText", youCantJumpNow);
+      }else if (param == "youCanBeIsekaied") {
+        this.$store.dispatch("changeText", youCanBeIsekaied);
+      }
+      this.textBox = "TextBoxDialog"
+    },
+    closeTextBox(){
+      this.textBox = "";
+    }
   },
   computed: {
     runAutoClick() {
@@ -150,8 +192,13 @@ export default {
       }
       return "ok";
     },
+    backgr() {
+      return this.$store.state.currentBackground;
+    },
   },
   created() {
+    console.log("%cWhat are you doing here? and be honest!", "color:blue");
+    console.log("\n");
     //spouští autoClick
     if (
       this.$store.state.shopitems[3].level >= 1 &&
@@ -168,10 +215,14 @@ export default {
     if (afk >= 21600) {
       afk = 21600;
     }
-    afk *= this.$store.state.shopitems[4].level;
-    console.log(afk);
+    afk *= this.$store.state.shopitems[4].level * this.$store.state.isekaiBonus;
     this.moneyChange(afk);
     this.afkMoney = afk;
+    if (this.$store.state.date == "") {
+      this.textBoxControler("firstText")
+    }else if (afk > 0) {
+      this.textBoxControler("afkBonusText")
+    }
 
     //spouští kontrolu času
     this.updateTime();
@@ -226,8 +277,9 @@ body h1 {
   font-size: 2em;
 }
 
-.AbandonedHardware{
-  background-image: url("./assets/Background.png");;
+main {
+  background-position: center bottom;
+  background-size: cover;
 }
 
 .status {

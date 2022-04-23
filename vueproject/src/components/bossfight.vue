@@ -45,14 +45,26 @@ export default {
     enemy() {},
 
     startFight() {},
+
+    results(par) {
+      if (par == w) {
+        this.$emit("moneyChange", prize * this.$store.state.isekaiBonus);
+      } else {
+        let rand1 = Math.floor(Math.random() * (21 - 1) + 1);
+        let rand2 = Math.floor(Math.random() * (21 - 1) + 1);
+        if (rand1 == rand2 && this.$store.state.level > 1) {
+          this.$store.dispatch("levelLost");
+        }
+      }
+    },
   },
   mounted() {
     if (this.parameter == 1) {
       this.enemyHP = this.$store.state.enemy1[0];
-    }else{
+    } else {
       this.enemyHP = this.$store.state.enemy2[0];
     }
-    console.log(this.parameter)
+    console.log(this.parameter);
   },
 };
 </script>

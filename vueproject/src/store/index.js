@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    shopitems: [ {
+    shopitems: [{
       image: 'sword_02b.png',
       name: 'Sword',
       desc: '2x click',
@@ -18,14 +18,14 @@ export default new Vuex.Store({
       name: 'Armor',
       desc: '2x resistance',
       price: 15,
-      level: 0
+      level: 1
     },
     {
       image: 'shield_02d.png',
       name: 'shield',
       desc: '2x xp',
       price: 40,
-      level: 0
+      level: 1
     },
     {
       image: 'necklace_02d.png',
@@ -63,52 +63,57 @@ export default new Vuex.Store({
       owned: false
     },
     {
-      image: 'Abandoned Hardware.png',
+      image: 'AbandonedHardware.png',
       name: 'Abandoned Hardware',
       desc: 'cool background',
       price: 500000,
       owned: false
     },
     {
-      image: 'Beauty Potion V2.png',
+      image: 'BeautyPotionV2.png',
       name: 'Beauty Potion',
       desc: 'maybe even cooler background',
       price: 2500000,
       owned: false
     },
     {
-      image: 'Coop Intruder.png',
+      image: 'CoopIntruder.png',
       name: 'Coop Intruder',
       desc: 'super cool background',
       price: 30000000,
       owned: false
     },
     {
-      image: 'New Letter.png',
+      image: 'NewLetter.png',
       name: 'New Letter',
       desc: 'OK, this is just flex',
       price: 69000000,
       owned: false
     }
-  ],
-  money: ["x", 20000000, "x", "x"],
-  rgroianaoror: ["x", "x", 20000000, "x"],
-  position: 1,
-  shiftedpos: 2,
-  xp: 0,
-  nextXp: 10,
-  level: 1,
-  date: '',
-  textIndex: 0,
-  totalMoney: 0,
-  totalClick: 0,
-  enemy1: [500, 750, 800, 1000, 1500, 2000],
-  enemy2: [5000, 6000, 7000, 8000, 10000]
+    ],
+    isekaiBonus: 1,
+    wasTold: [false, false],
+    textForTextBox: "",
+    currentBackground: "basicBackground.png",
+    money: ["x", 20000000, "x", "x"],
+    rgroianaoror: ["x", "x", 20000000, "x"],
+    position: 1,
+    shiftedpos: 2,
+    xp: 0,
+    nextXp: 10,
+    level: 1,
+    date: '',
+    textIndex: 0,
+    totalMoney: 0,
+    totalClick: 0,
+    canBeIsekai: false,
+    enemy1: [500, 750, 800, 1000, 1500, 2000],
+    enemy2: [5000, 6000, 7000, 8000, 10000]
   },
   getters: {
   },
   mutations: {
-    updateCoins(state, data){
+    updateCoins(state, data) {
 
       //👀 geniální anticheat 👀
 
@@ -122,7 +127,7 @@ export default new Vuex.Store({
           state.position = 0;
           state.money[state.position] = value;
           state.money[state.money.length - 1] = "x";
-        }else{
+        } else {
           let value = state.money[state.position]
           state.position++;
           state.money[state.position] = value;
@@ -134,63 +139,117 @@ export default new Vuex.Store({
           state.shiftedpos = 0;
           state.rgroianaoror[state.shiftedpos] = value;
           state.rgroianaoror[state.rgroianaoror.length - 1] = "x";
-        }else{
+        } else {
           let value = state.money[state.position]
           state.shiftedpos++;
           state.rgroianaoror[state.shiftedpos] = value;
           state.rgroianaoror[state.shiftedpos - 1] = "x";
         }
         //console.log(state.money);
-      }else{
+      } else {
         state.money[state.position] = oldCheck[state.shiftedpos];
         state.rgroianaoror = oldCheck;
       }
 
       if (data >= 1) {
-        state.totalMoney += data; 
+        state.totalMoney += data;
       }
     },
-    buyUpgrade(state, data){
+    buyUpgrade(state, data) {
       state.shopitems[data].level += 1;
-      state.xp += state.shopitems[data].level
+      state.xp += state.shopitems[data].level * state.shopitems[2].level
       if (state.xp >= state.nextXp) {
         state.level += 1
-        state.nextXp *= state.nextXp
+        state.nextXp *= 3
       }
       state.shopitems[data].price *= 2;
     },
 
-    updateTime(state, data){
+    updateTime(state, data) {
       state.date = data;
     },
-    updateTextIndex(state, data){
+    updateTextIndex(state, data) {
       state.textIndex = data;
     },
-    clickCounter(state){
+    clickCounter(state) {
       state.totalClick++;
     },
-    buyPotion(state, data){
+    buyPotion(state, data) {
       state.shopitems[data].owned = true;
-      state.xp += state.shopitems[data].price / 10
+      state.xp += state.shopitems[data].price / 10 * state.shopitems[2].level
       if (state.xp >= state.nextXp) {
         state.level += 1
-        state.nextXp *= state.nextXp
+        state.nextXp *= 3
       }
     },
-    usedPotion(state, data){
+    usedPotion(state, data) {
       state.shopitems[data].owned = false;
     },
-    toggleImg(state, data){
+    toggleImg(state, data) {
+      state.currentBackground = state.shopitems[data].image;
+    },
+    buyImg(state, data) {
       state.shopitems[data].owned = true;
       state.xp += state.shopitems[data].price / 10
       if (state.xp >= state.nextXp) {
         state.level += 1
-        state.nextXp *= state.nextXp
+        state.nextXp *= 3
       }
-    }
+      state.currentBackground = state.shopitems[data].image;
+    },
+    changeText(state, data) {
+      state.textForTextBox = data;
+    },
+    wasTold(state, data) {
+      state.wasTold[data] = true;
+    },
+    canBeIsekai(state, data) {
+      state.canBeIsekai = data;
+    },
+    reset(state) {
+      state.isekaiBonus += 1
+      state.wasTold = [false, false]
+      state.textForTextBox = ""
+      state.currentBackground = "basicBackground.png"
+      state.money = ["x", 0, "x", "x"]
+      state.rgroianaoror = ["x", "x", 0, "x"]
+      state.position = 1
+      state.shiftedpos = 2
+      state.xp = 0
+      state.nextXp = 10
+      state.level = 1
+      state.date = ''
+      state.textIndex = 0
+      state.totalMoney = 0
+      state.totalClick = 0
+      state.canBeIsekai = false
+      state.enemy1 = [500, 750, 800, 1000, 1500, 2000]
+      state.enemy2 = [5000, 6000, 7000, 8000, 10000]
+      state.shopitems[0].price = 10
+      state.shopitems[0].level = 1
+      state.shopitems[1].price = 15
+      state.shopitems[1].level = 1
+      state.shopitems[2].price = 40
+      state.shopitems[2].level = 1
+      state.shopitems[3].price = 500
+      state.shopitems[3].level = 0
+      state.shopitems[4].price = 2000
+      state.shopitems[4].level = 0
+      state.shopitems[5].owned = false
+      state.shopitems[6].owned = false
+      state.shopitems[7].owned = false
+      state.shopitems[8].owned = false
+      state.shopitems[9].owned = false
+      state.shopitems[10].owned = false
+      state.shopitems[11].owned = false
+
+    },
+    levelLost(state) {
+      state.level -= 1;
+    },
   },
   actions: {
-    updateCoins ({ state, commit }, data) {
+    updateCoins({ state, commit }, data) {
       commit('updateCoins', data)
     },
     buyUpgrade({ state, commit }, data) {
@@ -199,10 +258,10 @@ export default new Vuex.Store({
     updateTime({ state, commit }, data) {
       commit('updateTime', data)
     },
-    updateTextIndex({state, commit}, data){
+    updateTextIndex({ state, commit }, data) {
       commit('updateTextIndex', data)
     },
-    clickCounter({state, commit}){
+    clickCounter({ state, commit }) {
       commit('clickCounter')
     },
     buyPotion({ state, commit }, data) {
@@ -211,9 +270,27 @@ export default new Vuex.Store({
     usedPotion({ state, commit }, data) {
       commit('usedPotion', data)
     },
-    toggleImg({state, commit}, data){
+    toggleImg({ state, commit }, data) {
       commit('toggleImg', data)
-    }
+    },
+    buyImg({ state, commit }, data) {
+      commit('buyImg', data)
+    },
+    changeText({ state, commit }, data) {
+      commit('changeText', data)
+    },
+    wasTold({ state, commit }, data) {
+      commit('wasTold', data)
+    },
+    canBeIsekai({ state, commit }, data) {
+      commit('canBeIsekai', data)
+    },
+    reset({ state, commit }) {
+      commit('reset')
+    },
+    levelLost({ state, commit }) {
+      commit('levelLost')
+    },
   },
   modules: {
   },
