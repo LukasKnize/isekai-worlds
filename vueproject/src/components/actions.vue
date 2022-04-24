@@ -30,7 +30,8 @@ export default {
   name: "actions",
   methods: {
     openMenu(data, parameter) {
-      if (parameter == 1) {
+      if (this.$store.state.level >= 5) {
+        if (parameter == 1) {
         if (this.$store.state.enemy1.length == 0) {
           this.$emit("textBoxControler", "thereIsNoEnemyLeft");
         } else {
@@ -42,6 +43,9 @@ export default {
         } else {
           this.$emit("openMenu", { typeOfMenu: data, parameter: parameter });
         }
+      }
+      }else{
+        this.$emit("textBoxControler", "lowLevel")
       }
     },
     jump() {

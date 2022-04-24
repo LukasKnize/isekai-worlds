@@ -157,7 +157,8 @@ export default {
         "you will lose all your progress, but you'll get small bonus to your next life",
         "you'll get: " + (this.$store.state.isekaiBonus + 1) + "x bonus",
       ];
-      let thereIsNoEnemyLeft = ["there is no enemy left in this category"]
+      let thereIsNoEnemyLeft = ["there is no enemy left in this category"];
+      let lowLevel = ["you need level 5 and higher to unlock boss fights"];
       if (param == "firstText") {
         this.$store.dispatch("changeText", firstText);
       } else if (param == "afkBonusText") {
@@ -172,6 +173,8 @@ export default {
         this.$store.dispatch("changeText", youCanBeIsekaied);
       }else if (param == "thereIsNoEnemyLeft") {
         this.$store.dispatch("changeText", thereIsNoEnemyLeft);
+      }else if (param == "lowLevel") {
+        this.$store.dispatch("changeText", lowLevel);
       }
       this.textBox = "TextBoxDialog"
     },
@@ -275,7 +278,7 @@ main {
 }
 
 .status {
-  font-size: 1px;
+  font-size: 0px;
 }
 
 @media (max-width: 950px) {
