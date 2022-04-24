@@ -1,13 +1,13 @@
 <template>
   <div class="quests show" id="quests">
     <div class="questItem">
-      <p>Click 6.900 times</p>
+      <p>Make 6.900.000 coins</p>
       <div class="progressBar">
         <div class="progressBarFiller" v-bind:style="{ width: quest1 + '%' }"></div>
       </div>
     </div>
     <div class="questItem">
-      <p>Make 6.900.000 coins</p>
+      <p>Click 6.900 times</p>
       <div class="progressBar">
         <div class="progressBarFiller" v-bind:style="{ width: quest2 + '%' }"></div>
       </div>
@@ -36,12 +36,12 @@ completed1: 0,
 completed2: 0,
 completed3: 0
 }
-  },//00000,00
+  },
   computed: {
     quest1() {
       let q1 = this.$store.state.totalMoney;
 
-      let q1percentage = (q1 / 69) * 100;
+      let q1percentage = (q1 / 6900000) * 100;
       if (q1percentage >= 100) {
         this.completed1 = 1;
         q1percentage = 100;
@@ -56,7 +56,7 @@ completed3: 0
      quest2() {
       let q2 = this.$store.state.totalClick;
 
-      let q2percentage = (q2 / 69) * 100;
+      let q2percentage = (q2 / 6900) * 100;
       if (q2percentage >= 100) {
         this.completed2 = 1;
         q2percentage = 100;
@@ -71,7 +71,7 @@ completed3: 0
      quest3() {
       let q3 = this.$store.state.level;
 
-      let q3percentage = (q3 / 6) * 100;
+      let q3percentage = (q3 / 34) * 100;
       if (q3percentage >= 100) {
         this.completed3 = 1;
         q3percentage = 100;

@@ -5,14 +5,14 @@
       <img src="@/assets/helmet_02b.png" alt="" />
       <div class="actionItemTex">
         <p class="actionItemName">Fight with goblin</p>
-        <p class="actionItemDesc">{{this.$store.state.enemy1[0]}}HP 3CPS</p>
+        <p class="actionItemDesc">{{ this.$store.state.enemy1[0] }}HP 3CPS</p>
       </div>
     </div>
     <div class="actionItem" @click="openMenu('BossFight', 2)">
       <img src="@/assets/hat_01f.png" alt="" />
       <div class="actionItemTex">
         <p class="actionItemName">Fight with dark lord</p>
-        <p class="actionItemDesc">{{this.$store.state.enemy2[0]}}HP 6CPS</p>
+        <p class="actionItemDesc">{{ this.$store.state.enemy2[0] }}HP 6CPS</p>
       </div>
     </div>
     <div class="actionItem" @click="jump()">
@@ -30,16 +30,27 @@ export default {
   name: "actions",
   methods: {
     openMenu(data, parameter) {
-      console.log({typeOfMenu: data, parameter: parameter})
-      this.$emit("openMenu", {typeOfMenu: data, parameter: parameter});
+      if (parameter == 1) {
+        if (this.$store.state.enemy1.length == 0) {
+          this.$emit("textBoxControler", "thereIsNoEnemyLeft");
+        } else {
+          this.$emit("openMenu", { typeOfMenu: data, parameter: parameter });
+        }
+      }else if (parameter == 2) {
+        if (this.$store.state.enemy2.length == 0) {
+          this.$emit("textBoxControler", "thereIsNoEnemyLeft");
+        } else {
+          this.$emit("openMenu", { typeOfMenu: data, parameter: parameter });
+        }
+      }
     },
-    jump(){
+    jump() {
       if (this.$store.state.canBeIsekai) {
         this.$store.dispatch("reset");
-      }else{
+      } else {
         this.$emit("textBoxControler", "youCantJumpNow");
       }
-    }
+    },
   },
 };
 </script>

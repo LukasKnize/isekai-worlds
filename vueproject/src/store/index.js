@@ -95,8 +95,8 @@ export default new Vuex.Store({
     wasTold: [false, false],
     textForTextBox: "",
     currentBackground: "basicBackground.png",
-    money: ["x", 20000000, "x", "x"],
-    rgroianaoror: ["x", "x", 20000000, "x"],
+    money: ["x", 0, "x", "x"],
+    rgroianaoror: ["x", "x", 0, "x"],
     position: 1,
     shiftedpos: 2,
     xp: 0,
@@ -145,7 +145,6 @@ export default new Vuex.Store({
           state.rgroianaoror[state.shiftedpos] = value;
           state.rgroianaoror[state.shiftedpos - 1] = "x";
         }
-        //console.log(state.money);
       } else {
         state.money[state.position] = oldCheck[state.shiftedpos];
         state.rgroianaoror = oldCheck;
@@ -156,8 +155,13 @@ export default new Vuex.Store({
       }
     },
     buyUpgrade(state, data) {
-      state.shopitems[data].level += 1;
-      state.xp += state.shopitems[data].level * state.shopitems[2].level
+      if (data == 1) {
+        state.shopitems[data].level += 30;
+        state.xp += state.shopitems[data].level / 30 * state.shopitems[2].level 
+      }else{
+        state.shopitems[data].level += 1;
+        state.xp += state.shopitems[data].level * state.shopitems[2].level
+      }
       if (state.xp >= state.nextXp) {
         state.level += 1
         state.nextXp *= 3
@@ -187,6 +191,13 @@ export default new Vuex.Store({
     },
     toggleImg(state, data) {
       state.currentBackground = state.shopitems[data].image;
+    },
+    updateXP(state, data){
+      state.xp += data * state.shopitems[2].level;
+      if (state.xp >= state.nextXp) {
+        state.level += 1
+        state.nextXp *= 3
+      }
     },
     buyImg(state, data) {
       state.shopitems[data].owned = true;
@@ -247,6 +258,13 @@ export default new Vuex.Store({
     levelLost(state) {
       state.level -= 1;
     },
+    dropEnemy(state, data){
+      if(data == 1){
+        state.enemy1.shift()
+      }else if (data == 2) {
+        state.enemy2.shift()
+      }
+    }
   },
   actions: {
     updateCoins({ state, commit }, data) {
@@ -291,6 +309,12 @@ export default new Vuex.Store({
     levelLost({ state, commit }) {
       commit('levelLost')
     },
+    updateXP({ state, commit }, data){
+      commit('updateXP', data)
+    },
+    dropEnemy({state, commit}, data){
+      commit('dropEnemy', data)
+    }
   },
   modules: {
   },

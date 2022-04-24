@@ -1,3 +1,5 @@
-Projekt má stále pár technických nedostatků a samozřejmě nemá ještě implementovány všechny funkce, ale to pokud jsem správně pochopil, ještě v tomto odevzdání nemusí být hotové
+Hra je sice stále spíš lidl verzí toho co jsem chtěl vytvořit a určitě by potřebovala vyvážení cen a podobných věcí, ale na to nebyl úplně čas.
 
-odkaz: https://lukasknize.github.io/isekaiWorlds/
+chyby "TypeError: Cannot read properties of undefined (reading 'split')" si prosím nevšímejte, vše funguje akorát nevím kde se to pak pokazí
+
+odkaz na live verzi: https://lukasknize.github.io/isekaiWorlds/ 
