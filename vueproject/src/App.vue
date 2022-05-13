@@ -37,6 +37,7 @@ import About from "./components/about.vue";
 import Credits from "./components/credits.vue";
 import BossFight from "./components/bossfight.vue";
 import TextBoxDialog from "./components/textBoxDialog.vue";
+import LuckyWheel from "./components/luckyWheel.vue";
 
 //21600
 export default {
@@ -55,6 +56,7 @@ export default {
     About: About,
     BossFight: BossFight,
     TextBoxDialog: TextBoxDialog,
+    LuckyWheel: LuckyWheel
   },
   data() {
     return {
@@ -72,6 +74,7 @@ export default {
   },
   methods: {
     openMenu(typeOfMenu) {
+      console.log(typeOfMenu)
       if (this.menu != typeOfMenu && typeOfMenu.typeOfMenu == "BossFight") {
         this.parameter = typeOfMenu.parameter;
         this.menu = typeOfMenu.typeOfMenu;

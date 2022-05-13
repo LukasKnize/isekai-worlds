@@ -53,14 +53,14 @@ export default {
         this.startFight();
       }
 
-      if (this.enemyCurentHP <= 0) {
+      if (this.enemyCurentHP <= 0 && this.fightWasEnded == false) {
         this.results("w");
       }
     },
 
     enemy() {
       this.curentHP--;
-      if (this.curentHP <= 0) {
+      if (this.curentHP <= 0 && this.fightWasEnded == false) {
         this.results("l");
       }
     },

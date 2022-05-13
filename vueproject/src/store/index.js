@@ -95,8 +95,8 @@ export default new Vuex.Store({
     wasTold: [false, false],
     textForTextBox: "",
     currentBackground: "basicBackground.png",
-    money: ["x", 0, "x", "x"],
-    rgroianaoror: ["x", "x", 0, "x"],
+    money: ["x", 20000000, "x", "x"],
+    rgroianaoror: ["x", "x", 20000000, "x"],
     position: 1,
     shiftedpos: 2,
     xp: 0,
@@ -107,8 +107,10 @@ export default new Vuex.Store({
     totalMoney: 0,
     totalClick: 0,
     canBeIsekai: false,
-    enemy1: [500, 750, 800, 1000, 1500, 2000],
-    enemy2: [5000, 6000, 7000, 8000, 10000]
+    enemy1: [100, 150, 200, 300, 350, 400],
+    enemy2: [150, 200, 250, 300, 400],
+    tickets: 5,
+    arcadeCoins: 0,
   },
   getters: {
   },
@@ -157,14 +159,14 @@ export default new Vuex.Store({
     buyUpgrade(state, data) {
       if (data == 1) {
         state.shopitems[data].level += 30;
-        state.xp += state.shopitems[data].level / 30 * state.shopitems[2].level 
+        state.xp += Math.floor(state.shopitems[data].level / 30 * state.shopitems[2].level)
       }else{
         state.shopitems[data].level += 1;
-        state.xp += state.shopitems[data].level * state.shopitems[2].level
+        state.xp += Math.floor(state.shopitems[data].level * state.shopitems[2].level)
       }
       if (state.xp >= state.nextXp) {
         state.level += 1
-        state.nextXp *= 3
+        state.nextXp = Math.floor(0.5 * state.nextXp)
       }
       state.shopitems[data].price *= 2;
     },
@@ -180,10 +182,10 @@ export default new Vuex.Store({
     },
     buyPotion(state, data) {
       state.shopitems[data].owned = true;
-      state.xp += state.shopitems[data].price / 10 * state.shopitems[2].level
+      state.xp += Math.floor(state.shopitems[data].price / 5 * state.shopitems[2].level)
       if (state.xp >= state.nextXp) {
         state.level += 1
-        state.nextXp *= 3
+        state.nextXp = Math.floor(0.5 * state.nextXp)
       }
     },
     usedPotion(state, data) {
@@ -193,18 +195,18 @@ export default new Vuex.Store({
       state.currentBackground = state.shopitems[data].image;
     },
     updateXP(state, data){
-      state.xp += data * state.shopitems[2].level;
+      state.xp += Math.floor(data * 2 * state.shopitems[2].level);
       if (state.xp >= state.nextXp) {
         state.level += 1
-        state.nextXp *= 3
+        state.nextXp = Math.floor(0.5 * state.nextXp)
       }
     },
     buyImg(state, data) {
       state.shopitems[data].owned = true;
-      state.xp += state.shopitems[data].price / 10
+      state.xp += Math.floor(state.shopitems[data].price / 5)
       if (state.xp >= state.nextXp) {
         state.level += 1
-        state.nextXp *= 3
+        state.nextXp = Math.floor(0.5 * state.nextXp)
       }
       state.currentBackground = state.shopitems[data].image;
     },
@@ -234,8 +236,8 @@ export default new Vuex.Store({
       state.totalMoney = 0
       state.totalClick = 0
       state.canBeIsekai = false
-      state.enemy1 = [500, 750, 800, 1000, 1500, 2000]
-      state.enemy2 = [5000, 6000, 7000, 8000, 10000]
+      state.enemy1 = [100, 150, 200, 300, 350, 400]
+      state.enemy2 = [150, 200, 250, 300, 400]
       state.shopitems[0].price = 10
       state.shopitems[0].level = 1
       state.shopitems[1].price = 15
@@ -253,7 +255,8 @@ export default new Vuex.Store({
       state.shopitems[9].owned = false
       state.shopitems[10].owned = false
       state.shopitems[11].owned = false
-
+      state.arcadeCoins = 0
+      state.tickets = 0
     },
     levelLost(state) {
       state.level -= 1;
@@ -264,6 +267,12 @@ export default new Vuex.Store({
       }else if (data == 2) {
         state.enemy2.shift()
       }
+    },
+    tickets(state, data){
+      state.tickets += data;
+    },
+    arcadeCoins(state, data){
+      state.arcadeCoins += data;
     }
   },
   actions: {
@@ -314,6 +323,12 @@ export default new Vuex.Store({
     },
     dropEnemy({state, commit}, data){
       commit('dropEnemy', data)
+    },
+    tickets({state, commit}, data){
+      commit("tickets", data)
+    },
+    arcadeCoins({state, commit}, data){
+      commit("arcadeCoins", data)
     }
   },
   modules: {

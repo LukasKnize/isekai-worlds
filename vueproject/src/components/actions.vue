@@ -22,6 +22,13 @@
         <p class="actionItemDesc">2x bonus for your next life</p>
       </div>
     </div>
+    <div class="actionItem" @click="openMenu('LuckyWheel', 0)">
+      <img src="@/assets/arcade.png" alt="" />
+      <div class="actionItemTex">
+        <p class="actionItemName">Arcade</p>
+        <p class="actionItemDesc">play minigames and win prizes</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,22 +37,24 @@ export default {
   name: "actions",
   methods: {
     openMenu(data, parameter) {
-      if (this.$store.state.level >= 5) {
+      if (data == "LuckyWheel") {
+        this.$emit("openMenu", data);
+      } else if (this.$store.state.level >= 5) {
         if (parameter == 1) {
-        if (this.$store.state.enemy1.length == 0) {
-          this.$emit("textBoxControler", "thereIsNoEnemyLeft");
-        } else {
-          this.$emit("openMenu", { typeOfMenu: data, parameter: parameter });
+          if (this.$store.state.enemy1.length == 0) {
+            this.$emit("textBoxControler", "thereIsNoEnemyLeft");
+          } else {
+            this.$emit("openMenu", { typeOfMenu: data, parameter: parameter });
+          }
+        } else if (parameter == 2) {
+          if (this.$store.state.enemy2.length == 0) {
+            this.$emit("textBoxControler", "thereIsNoEnemyLeft");
+          } else {
+            this.$emit("openMenu", { typeOfMenu: data, parameter: parameter });
+          }
         }
-      }else if (parameter == 2) {
-        if (this.$store.state.enemy2.length == 0) {
-          this.$emit("textBoxControler", "thereIsNoEnemyLeft");
-        } else {
-          this.$emit("openMenu", { typeOfMenu: data, parameter: parameter });
-        }
-      }
-      }else{
-        this.$emit("textBoxControler", "lowLevel")
+      } else {
+        this.$emit("textBoxControler", "lowLevel");
       }
     },
     jump() {

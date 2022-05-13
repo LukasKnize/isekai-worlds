@@ -71,7 +71,7 @@ completed3: 0
      quest3() {
       let q3 = this.$store.state.level;
 
-      let q3percentage = (q3 / 34) * 100;
+      let q3percentage = (q3 / 15) * 100;
       if (q3percentage >= 100) {
         this.completed3 = 1;
         q3percentage = 100;
